@@ -8,7 +8,9 @@ public class FizzBuzz {
 
     public String fizzBuzz(int number) {
         StringBuffer temp = new StringBuffer();
-
+        if(String.valueOf(number).contains("3")){
+            return "Fizz";
+        }
         if(number%3==0){
             temp.append("Fizz");
         }
@@ -18,7 +20,6 @@ public class FizzBuzz {
         if(number%7==0){
             temp.append("Whizz");
         }
-
         return "".equals(temp.toString()) ? String.valueOf(number) : String.valueOf(temp);
     }
 

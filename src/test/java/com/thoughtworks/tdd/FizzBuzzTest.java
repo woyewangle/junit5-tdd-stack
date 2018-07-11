@@ -107,9 +107,9 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public  void  should_return_BuzzWhizz_when_given_input_is_35(){
+    public  void  should_return_BuzzWhizz_when_given_input_is_70(){
         //given
-        int number=35;
+        int number=70;
         FizzBuzz fizzBuzz=new FizzBuzz();
         //when
         String actual =fizzBuzz.fizzBuzz(number);
@@ -130,6 +130,19 @@ public class FizzBuzzTest {
         //then
         assertThat(actual, is("FizzBuzzWhizz"));
     }
+    @Test
+    public  void  should_return_Fizz_when_given_input_contains_3(){
+        //given
+        int number=38;
+
+        FizzBuzz fizzBuzz=new FizzBuzz();
+        //when
+        String actual =fizzBuzz.fizzBuzz(number);
+
+        //then
+        assertThat(actual, is("Fizz"));
+    }
+
 }
 
 

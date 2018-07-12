@@ -77,11 +77,9 @@ public class ParkingTest {
     @Test
     public void should_park_successfullly_when_call_park_again_given_a_full_parking_lot_take_out_a_car() {
         ParkingLot parkingLot = new ParkingLot(1);
-
         Car theCar = new Car();
         Receipt receipt = parkingLot.park(theCar);
         parkingLot.unPark(receipt);
-
         try {
             parkingLot.park(new Car());
         } catch (ParkingLotFullException exception) {
@@ -89,15 +87,13 @@ public class ParkingTest {
         }
     }
 
-    //判断parkingBoy可以停车,把车停在哪里
+    //判断parkingBoy可以停车,把车停在停车场
     @Test
     public void should_park_successfully_when_parkingBoy_can_park_car_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
-        ArrayList<ParkingLot> parkingLotlist = new ArrayList<>();
-        parkingLotlist.add(parkingLot);
         //parkingBoy管理停车场
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLotlist);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         try {
             parkingBoy.park(theCar);
         } catch (ParkingLotFullException exception) {
@@ -123,6 +119,8 @@ public class ParkingTest {
         }
         assertThat(parkingBoy.getCar(receipt),is(theCar));
     }
+
+
 
 
 

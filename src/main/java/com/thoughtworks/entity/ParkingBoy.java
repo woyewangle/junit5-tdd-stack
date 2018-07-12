@@ -10,20 +10,29 @@ import java.util.ArrayList;
  * @Modified By:
  */
 public class ParkingBoy {
-    ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+    ParkingLot parkingLot;
 
-    public ParkingBoy(ArrayList<ParkingLot> parkingLotlist) {
-        this.parkingLotList=parkingLotlist;
+
+
+    public ParkingBoy(ParkingLot parkingLot) {
+        this.parkingLot=parkingLot;
     }
 
     public Receipt park(Car theCar) {
-        ParkingLot parkinglot = parkingLotList.get(0);
-        return parkinglot.park(theCar);
+        return this.parkingLot.park(theCar);
     }
 
 
     public Car getCar(Receipt receipt) {
-        ParkingLot parkinglot = parkingLotList.get(0);
-        return parkinglot.unPark(receipt);
+        return this.parkingLot.unPark(receipt);
+    }
+
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
     }
 }

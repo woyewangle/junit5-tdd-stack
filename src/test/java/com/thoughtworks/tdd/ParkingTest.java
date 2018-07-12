@@ -91,7 +91,7 @@ public class ParkingTest {
 
     //判断parkingBoy可以停车,把车停在哪里
     @Test
-    public void should_park_successfully_when_parkingBoy_can_park_car_given_a_car() {
+    public void should_park_successfully_when_parkingBoy_can_park_car_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         ArrayList<ParkingLot> parkingLotlist = new ArrayList<>();
@@ -105,6 +105,25 @@ public class ParkingTest {
         }
 
     }
+
+    //判断parking可以取一个车
+    @Test
+    public void should_getCar_successfully_when_parkingBoy_getCar_given_a_parkingLot() {
+        Car theCar = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLotlist = new ArrayList<>();
+        parkingLotlist.add(parkingLot);
+        //parkingBoy管理停车场
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotlist);
+        Receipt receipt=new Receipt();
+        try {
+             receipt=parkingBoy.park(theCar);
+        } catch (ParkingLotFullException exception) {
+            fail("should park successfully");
+        }
+        assertThat(parkingBoy.getCar(receipt),is(theCar));
+    }
+
 
 
 //    @Test

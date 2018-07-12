@@ -22,4 +22,8 @@ public class ParkingBoy {
     }
 
 
+    public Car getCar(Receipt receipt) {
+        ParkingLot parkinglot = parkingLotList.get(0);
+        return parkinglot.unPark(receipt);
+    }
 }

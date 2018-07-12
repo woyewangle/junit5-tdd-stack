@@ -17,7 +17,7 @@ public class ParkingLot {
 
     public Receipt park(Car car) {
         Receipt receipt=new Receipt();
-        if(size>parkingCars.size()){
+        if(size>=parkingCars.size()){
             parkingCars.put(receipt,car);
             this.size--;
 
@@ -26,6 +26,8 @@ public class ParkingLot {
         }
         return receipt;
     }
+
+
 
     //取车
     public Car unPark(Receipt receipt) {
@@ -38,4 +40,7 @@ public class ParkingLot {
         //return  size==0;
         return size==parkingCars.size();
     }
+
+
+
 }

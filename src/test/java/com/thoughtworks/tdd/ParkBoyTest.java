@@ -89,9 +89,26 @@ public class ParkBoyTest {
         try{
             parkingBoy.park(new Car());
             parkingBoy.park(new Car());
-        }catch (ParkingLotFullException exception){
             fail("It should not throw exception!");
+        }catch (ParkingLotFullException exception){
         }
+
+    }
+
+    @Test
+    public void should_getCar_successfully_when_car_in_parkingLot_given_two_parkingLot() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        parkingLotList.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Car theCar=new Car();
+        Car theCar1=new Car();
+        Receipt receipt=parkingBoy.park(theCar);
+        Receipt receipt1=parkingBoy.park(theCar1);
+        assertThat(parkingBoy.getCar(receipt),is(theCar));
+        assertThat(parkingBoy.getCar(receipt1),is(theCar1));
 
     }
 

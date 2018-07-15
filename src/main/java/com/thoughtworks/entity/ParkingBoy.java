@@ -27,7 +27,7 @@ public class ParkingBoy {
             parkingLotsSumSize=+parkingLotsList.get(i).getSize();//车位总数量
             parkingCarsSumSzie=+parkingLotsList.get(i).getparkingCarsCount();
         }
-        return parkingLotsSumSize<parkingCarsSumSzie;
+        return parkingCarsSumSzie>=parkingLotsSumSize;
     }
 
     public Receipt park(Car theCar) {

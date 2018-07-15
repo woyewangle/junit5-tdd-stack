@@ -1,4 +1,4 @@
-package com.thoughtworks.parkingUI;
+package com.thoughtworks.parkingSystem;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +10,12 @@ import java.util.Scanner;
  * @Date: Create in 4:36 PM 7/13/2018
  * @Modified By:
  */
-public class parkingUiMain {
+public class ParkingSystemMain {
     @Test
     public static void main(String[] args) {
+
+        ParkingSystemIO systemIO  = new ParkingSystemIO();
+
         while (true){
             System.out.println("1.停车\n2.取车\n请输入您要进行的操作:" );
             Scanner in=new Scanner(System.in);
@@ -24,6 +27,8 @@ public class parkingUiMain {
                 break;
             }
         }
+
+
 
 
     }

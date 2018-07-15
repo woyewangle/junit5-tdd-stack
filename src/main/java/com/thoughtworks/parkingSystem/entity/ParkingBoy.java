@@ -1,5 +1,6 @@
-package com.thoughtworks.entity;
+package com.thoughtworks.parkingSystem.entity;
 
+import com.thoughtworks.parkingSystem.entity.Car;
 import com.thoughtworks.exception.ParkingLotFullException;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class ParkingBoy {
 
 
     public Car getCar(Receipt receipt) {
-        Car car=new Car();
+        Car car=null;
         for(int i=0;i<parkingLotsList.size();i++){
             car=parkingLotsList.get(i).unPark(receipt);
             if (car!=null){

@@ -1,14 +1,14 @@
-package com.thoughtworks.tdd;
+package com.thoughtworks.tdd.parkingSystem;
 
-import com.thoughtworks.entity.*;
+import com.thoughtworks.parkingSystem.entity.Car;
+import com.thoughtworks.parkingSystem.entity.ParkingLot;
+import com.thoughtworks.parkingSystem.entity.Receipt;
 import com.thoughtworks.exception.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNot.not;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.mock;
 
 public class ParkingLotTest {
 
@@ -17,7 +17,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1);
 
         try {
-            parkingLot.park(new Car());
+            parkingLot.park(new Car("111"));
         } catch (ParkingLotFullException exception) {
             fail("should park successfully");
         }
@@ -29,7 +29,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(0);
 
         try {
-            parkingLot.park(new Car());
+            parkingLot.park(new Car("111"));
             fail("should park successfully");
         } catch (ParkingLotFullException exception) {
 
@@ -40,43 +40,56 @@ public class ParkingLotTest {
     public void should_get_specific_car_when_call_unPark_given_receipt_is_right() {
         ParkingLot parkingLot = new ParkingLot(1);
 
-        Car theCar = new Car();
+        Car theCar = new Car("111");
         Receipt receipt = parkingLot.park(theCar);
 
         assertThat(parkingLot.unPark(receipt), is(theCar));
 
     }
-
+//
     @Test
     public void should_be_true_when_call_isFull_given_parking_lot_is_full() {
         ParkingLot parkingLot = new ParkingLot(0);
         assertThat(parkingLot.isFull(), is(true));
     }
-
-
+//
+//
     @Test
     public void should_be_false_when_call_isFull_given_parking_lot_is_not_full() {
         ParkingLot parkingLot = new ParkingLot(1);
         assertThat(parkingLot.isFull(), is(false));
     }
-
+//
     @Test
     public void should_be_false_when_call_isFull_given_a_full_parking_lot_take_out_a_car() {
         ParkingLot parkingLot = new ParkingLot(1);
-        Car theCar = new Car();
+        Car theCar = new Car("111");
         Receipt receipt = parkingLot.park(theCar);
         parkingLot.unPark(receipt);
         assertThat(parkingLot.isFull(), is(false));
     }
+//
 
+    @Test
+    public void should_park_fail_when_call_park_again_given_a_full_parking_lot() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car theCar = new Car("111");
+        Receipt receipt = parkingLot.park(theCar);
+        try {
+            parkingLot.park(new Car("222"));
+            fail("should park fail");
+        } catch (ParkingLotFullException exception) {
+
+        }
+    }
     @Test
     public void should_park_successfullly_when_call_park_again_given_a_full_parking_lot_take_out_a_car() {
         ParkingLot parkingLot = new ParkingLot(1);
-        Car theCar = new Car();
+        Car theCar = new Car("111");
         Receipt receipt = parkingLot.park(theCar);
         parkingLot.unPark(receipt);
         try {
-            parkingLot.park(new Car());
+            parkingLot.park(new Car("222"));
         } catch (ParkingLotFullException exception) {
             fail("should park successfully");
         }

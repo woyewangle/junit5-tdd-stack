@@ -1,4 +1,4 @@
-package com.thoughtworks.entity;
+package com.thoughtworks.exception;
 
 /**
  * @Author: 余锡鸿
@@ -7,4 +7,11 @@ package com.thoughtworks.entity;
  * @Modified By:
  */
 public class ParkingLotFullException extends RuntimeException {
+    private static final String caution = "车位已满，停车失败！";
+
+    @Override
+    public void printStackTrace() {
+        super.printStackTrace();
+        System.out.println(caution);
+    }
 }

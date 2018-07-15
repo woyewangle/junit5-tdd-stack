@@ -1,5 +1,6 @@
-package com.thoughtworks.entity;
+package com.thoughtworks.parkingSystem.entity;
 
+import com.thoughtworks.parkingSystem.entity.Car;
 import com.thoughtworks.exception.ParkingLotFullException;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.HashMap;
  */
 public class ParkingLot {
     int size;
-    HashMap<Receipt,Car> parkingCars=new HashMap<Receipt,Car>();
+    HashMap<String,Car> parkingCars=new HashMap<String,Car>();
     public ParkingLot(int size) {
         this.size=size;
     }
@@ -20,8 +21,7 @@ public class ParkingLot {
     public Receipt park(Car car) {
         Receipt receipt=new Receipt();
         if(!isFull()){
-            parkingCars.put(receipt,car);
-
+            parkingCars.put(receipt.getId(),car);
         }else {
             throw new ParkingLotFullException();
         }
@@ -32,7 +32,7 @@ public class ParkingLot {
 
     //取车
     public Car unPark(Receipt receipt) {
-        return  parkingCars.remove(receipt);
+        return  parkingCars.remove(receipt.getId());
     }
 
 

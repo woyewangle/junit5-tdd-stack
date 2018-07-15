@@ -20,7 +20,7 @@ public class ParkBoyTest {
 
     //判断parkingBoy可以停车,把车停在停车场
     @Test
-    public void should_park_successfully_when_parkingBoy_can_park_car_given_a_parkingLot() {
+    public void should_park_successfully_when_parkingLot_is_not_full_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -32,20 +32,46 @@ public class ParkBoyTest {
 
     }
 
-    //判断parkBoy可以从车库取车
+
     @Test
-    public void should_getCar_successfully_when_parkingBoy_getCar_given_a_parkingLot() {
+    public void should_getCar_successfully_when_the_car_in_parkingLot_parkingBoy_getCar_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Receipt receipt=new Receipt();
-        try {
-            receipt=parkingBoy.park(theCar);
-        } catch (ParkingLotFullException exception) {
-            fail("should park successfully");
-        }
-        assertThat(parkingBoy.getCar(receipt),is(theCar));
+        Receipt receipt=parkingBoy.park(theCar);
+        Car car1=parkingBoy.getCar(receipt);
+        assertThat(car1,is(theCar));
     }
+
+
+    @Test
+    public void should_getCar_fail_when_the_car_not_in_parkingLot_parkingBoy_getCar_given_a_parkingLot() {
+        Car theCar = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Receipt receipt=parkingBoy.park(new Car());
+        Car car1=parkingBoy.getCar(receipt);
+        assertThat(car1,not(theCar));
+    }
+
+    @Test
+    public void should_park_successfully_when_parkingLot_is_not_full__given_two_parkingLot() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        parkingLotList.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        try{
+            parkingBoy.park(new Car());
+            parkingBoy.park(new Car());
+        }catch (ParkingLotFullException exception){
+            fail("It should not throw exception!");
+        }
+
+    }
+
+
 
 
 

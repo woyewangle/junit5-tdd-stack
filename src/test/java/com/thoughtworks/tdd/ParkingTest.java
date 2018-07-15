@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 
-
 public class ParkingTest {
 
     @Test

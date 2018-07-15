@@ -23,7 +23,9 @@ public class ParkBoyTest {
     public void should_park_successfully_when_parkingLot_is_not_full_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         try {
             parkingBoy.park(theCar);
         } catch (ParkingLotFullException exception) {
@@ -37,7 +39,9 @@ public class ParkBoyTest {
     public void should_getCar_successfully_when_the_car_in_parkingLot_parkingBoy_getCar_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         Receipt receipt=parkingBoy.park(theCar);
         Car car1=parkingBoy.getCar(receipt);
         assertThat(car1,is(theCar));
@@ -48,7 +52,9 @@ public class ParkBoyTest {
     public void should_getCar_fail_when_the_car_not_in_parkingLot_parkingBoy_getCar_given_a_parkingLot() {
         Car theCar = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         Receipt receipt=parkingBoy.park(new Car());
         Car car1=parkingBoy.getCar(receipt);
         assertThat(car1,not(theCar));
@@ -58,6 +64,24 @@ public class ParkBoyTest {
     public void should_park_successfully_when_parkingLot_is_not_full__given_two_parkingLot() {
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingLot parkingLot1 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        parkingLotList.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        try{
+            parkingBoy.park(new Car());
+            parkingBoy.park(new Car());
+        }catch (ParkingLotFullException exception){
+            fail("It should not throw exception!");
+        }
+
+    }
+
+
+    @Test
+    public void should_park_fail_when_parkingLot_is_full_given_two_parkingLot() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot1 = new ParkingLot(0);
         ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
         parkingLotList.add(parkingLot);
         parkingLotList.add(parkingLot1);

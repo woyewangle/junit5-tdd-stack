@@ -34,12 +34,21 @@ public class ParkingLot {
     }
 
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public Boolean isFull() {
         //return  size==0;
         return size==parkingCars.size();
     }
 
 
-
-
+    public int getparkingCarsCount() {
+        return parkingCars.size();
+    }
 }

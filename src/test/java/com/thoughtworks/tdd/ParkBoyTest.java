@@ -56,8 +56,7 @@ public class ParkBoyTest {
         parkingLotList.add(parkingLot);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
         Receipt receipt=parkingBoy.park(new Car());
-        Car car1=parkingBoy.getCar(receipt);
-        assertThat(car1,not(theCar));
+        assertThat(parkingBoy.getCar(receipt),not(theCar));
     }
 
     @Test
@@ -109,8 +108,30 @@ public class ParkBoyTest {
         Receipt receipt1=parkingBoy.park(theCar1);
         assertThat(parkingBoy.getCar(receipt),is(theCar));
         assertThat(parkingBoy.getCar(receipt1),is(theCar1));
-
     }
+
+
+    @Test
+    public void should_getCar_faid_when_receipt_is_Wrong__given_two_parkingLot() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot);
+        parkingLotList.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Car theCar=new Car();
+        Car theCar1=new Car();
+        Receipt receipt=parkingBoy.park(theCar);
+        Receipt receipt1=parkingBoy.park(theCar1);
+        assertThat(parkingBoy.getCar(receipt1),not(theCar));
+        assertThat(parkingBoy.getCar(receipt),not(theCar1));
+    }
+
+
+
+
+
+
 
 
 
